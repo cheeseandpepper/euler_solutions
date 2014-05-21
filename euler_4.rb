@@ -4,8 +4,8 @@
 
 def largest_palindrome_from_product
 
-  max = 9999
-  min = 1000
+  max = 999
+  min = 100
   product = 0
 
   max.downto(min).each do |a|
