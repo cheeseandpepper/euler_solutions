@@ -51,8 +51,7 @@ def greatest_adjacent_product(quantity)
   x       = matrix[0].size
   y       = matrix.size
 
-  quantity_check = quantity-1
-
+ 
   sideways      = []
   up_and_down   = []
   diagonal_up   = []
@@ -85,7 +84,7 @@ def greatest_adjacent_product(quantity)
   #diagonal up
   matrix.each_with_index do |row, i|
     row.each_with_index do |cell, i2|
-      diagonal_up << quantity.times.each_with_object([]) { |num, array| array << matrix[i - num][i2 + num] if matrix[i-num] && matrix[i-num][i2+num] && (i-quantity_check) >= 0 }
+      diagonal_up << quantity.times.each_with_object([]) { |num, array| array << matrix[i - num][i2 + num] if matrix[i-num] && matrix[i-num][i2+num] && (i-num) >= 0 }
       #diagonal_up << [matrix[i][i2], matrix[i-1][i2+1], matrix[i-2][i2+2], matrix[i-3][i2+3]] if matrix[i-3] && matrix[i-3][i2+3] && (i-3) >= 0
     end
   end  
