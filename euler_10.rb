@@ -3,7 +3,7 @@
 # Find the sum of all the primes below two million.
 
 def sum_of_primes_below(number)
-  start_time    = Time.now.to_i
+  start_time    = Time.now
   primes        = Array.new(number, true)
   prime_numbers = []
   (0..number).each_with_index.collect do |prime_value, i|
@@ -13,7 +13,7 @@ def sum_of_primes_below(number)
   end
   
   puts prime_numbers.inject(:+)
-  end_time = Time.now.to_i
+  end_time = Time.now
   puts "Completed in #{end_time - start_time} seconds"
 end
 
