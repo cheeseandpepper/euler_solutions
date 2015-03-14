@@ -1,32 +1,19 @@
 # What is the greatest product of four adjacent numbers in the same direction
 #(up, down, left, right, or diagonally) in the 20×20 grid?
 
-# XXXX
-# [0,0] [0,1] [0,2] [0,3]
-# [y,x] [y,x+1] [y,x+2] [y,x+3]
+### Mikes Notes!!!
+### I wanted to be able to handle any variable of adjacent numbers and any grid size, including rectangular grids!
+### Commented out is the fixed 4 adjacent way.  
 
-# X
-# X
-# X
-# X
-# [0,0] [1,0] [2,0] [3,0]
-# [y,x] [y+1,x] [y,x+2] [y,x+3]
 
-# X
-#  X
-#   X
-#    X
-# [0,0] [1,1] [2,2] [3,3]
-# [y,x] [y+1,x+1] [y+2,x+2] [y+3,x+3]
 
-#    X
-#   X
-#  X
-# X
-# [3,3] [2,2] [1,1] [0,0]
-# [y,x] [y-1,x-1] [y-2,x-2] [y-3,x-3]
-
-require 'pry'
+# GRID = 
+# "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
+# 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
+# 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
+# 52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
+# 22 31 16 71 51 67 63 89 41 92 36 54 22 40 40 28 66 33 13 80
+# 24 47 32 60 99 03 45 02 44 75 33 53 78 36 84 20 35 17 12 50"
 
 GRID =
 "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -64,6 +51,7 @@ def greatest_adjacent_product(quantity)
   x       = matrix[0].size
   y       = matrix.size
 
+  quantity_check = quantity-1
 
   sideways      = []
   up_and_down   = []
@@ -72,47 +60,57 @@ def greatest_adjacent_product(quantity)
 
   #sideways
   matrix.each_with_index do |row, i|
-    sideways << [row[i], row[i+1], row[i+2], row[i+3]] if row[i+3]
+    row.each_with_index do |cell, i2|
+      sideways << quantity.times.each_with_object([]) { |num, array| array << matrix[i][num + i2] if row[i2+num] }
+      #sideways << [row[i], row[i+1], row[i+2], row[i+3]] if row[i+3]
+    end
   end
 
   #up and down
   matrix.each_with_index do |row, i|
     row.each_with_index do |cell, i2|
-      up_and_down << [matrix[i][i2], matrix[i+1][i2], matrix[i+2][i2], matrix[i+3][i2]] if matrix[i+3]
+      up_and_down << quantity.times.each_with_object([]) { |num, array| array << matrix[num + i][i2] if matrix[i+num] }
+      #up_and_down << [matrix[i][i2], matrix[i+1][i2], matrix[i+2][i2], matrix[i+3][i2]] if matrix[i+3]
     end
   end
 
   #diagonal down
   matrix.each_with_index do |row, i|
     row.each_with_index do |cell, i2|
-      diagonal_down << [matrix[i][i2], matrix[i+1][i2+1], matrix[i+2][i2+2], matrix[i+3][i2+3]] if matrix[i+3] && matrix[i+3][i2+3]
+      diagonal_down << quantity.times.each_with_object([]) { |num, array| array << matrix[num + i][i2 + num] if matrix[i+num] && matrix[i+num][i2+num] }
+      #diagonal_down << [matrix[i][i2], matrix[i+1][i2+1], matrix[i+2][i2+2], matrix[i+3][i2+3]] if matrix[i+3] && matrix[i+3][i2+3]
     end
   end
 
-  #diagonal_up
+  #diagonal up
   matrix.each_with_index do |row, i|
     row.each_with_index do |cell, i2|
-      diagonal_up << [matrix[i][i2], matrix[i-1][i2+1], matrix[i-2][i2+2], matrix[i-3][i2+3]] if matrix[i-3] && matrix[i-3][i2+3] && (i-3) >= 0
+      diagonal_up << quantity.times.each_with_object([]) { |num, array| array << matrix[i - num][i2 + num] if matrix[i-num] && matrix[i-num][i2+num] && (i-quantity_check) >= 0 }
+      #diagonal_up << [matrix[i][i2], matrix[i-1][i2+1], matrix[i-2][i2+2], matrix[i-3][i2+3]] if matrix[i-3] && matrix[i-3][i2+3] && (i-3) >= 0
     end
   end  
 
- 
+
   diagonal_up.each do |set|
+    next if set.compact.empty?
     set_product = set.inject(:*)
     product = set_product if set_product > product
   end
 
   diagonal_down.each do |set|
+    next if set.compact.empty?
     set_product = set.inject(:*)
     product = set_product if set_product > product
   end
 
   up_and_down.each do |set|
+    next if set.compact.empty?
     set_product = set.inject(:*)
     product = set_product if set_product > product
   end
 
   sideways.each do |set|
+    next if set.compact.empty?
     set_product = set.inject(:*)
     product = set_product if set_product > product
   end
@@ -123,3 +121,5 @@ def greatest_adjacent_product(quantity)
 end
 
 greatest_adjacent_product(4)
+#greatest_adjacent_product(19)
+
