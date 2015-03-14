@@ -90,28 +90,14 @@ def greatest_adjacent_product(quantity)
   end  
 
 
-  diagonal_up.each do |set|
-    next if set.compact.empty?
-    set_product = set.inject(:*)
-    product = set_product if set_product > product
-  end
+  directions = [sideways, up_and_down, diagonal_up, diagonal_down]
 
-  diagonal_down.each do |set|
-    next if set.compact.empty?
-    set_product = set.inject(:*)
-    product = set_product if set_product > product
-  end
-
-  up_and_down.each do |set|
-    next if set.compact.empty?
-    set_product = set.inject(:*)
-    product = set_product if set_product > product
-  end
-
-  sideways.each do |set|
-    next if set.compact.empty?
-    set_product = set.inject(:*)
-    product = set_product if set_product > product
+  directions.each do |direction|
+    direction.each do |set|
+      next if set.compact.empty?
+      set_product = set.inject(:*)
+      product = set_product if set_product > product
+    end
   end
 
   puts product
