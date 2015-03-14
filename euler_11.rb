@@ -48,9 +48,6 @@ def greatest_adjacent_product(quantity)
 
   matrix  = GRID.split("\n").map { |row| row.split(" ") }.collect{ |row| row.collect { |cell| cell.to_i } }
   product = 0
-  x       = matrix[0].size
-  y       = matrix.size
-
  
   sideways      = []
   up_and_down   = []
