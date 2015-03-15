@@ -6,6 +6,7 @@ def sum_of_primes_below(number)
   start_time    = Time.now
   primes        = Array.new(number, true)
   prime_numbers = []
+  
   (0..number).each_with_index.collect do |prime_value, i|
     next if i == 0 || i == 1 || primes[i] == false
     prime_numbers << i 
