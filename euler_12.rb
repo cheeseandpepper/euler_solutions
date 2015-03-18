@@ -16,20 +16,18 @@
 # What is the value of the first triangle number to have over five hundred divisors?
 
 
-## WIP.  TOO SLOW
+## Less slow, but still slow.
+require 'pry'
 
 def build_triangle_numbers_until_divisor_count_reaches(number)
   start_time      = Time.now
   count           = 0
   triangle_number = 0
-  range_max       = 2
-  
+  integer         = 2
   while count < number
-    triangle_range  = (1..range_max)
-    triangle_number =  triangle_range.inject(:+) 
+    triangle_number = triangle_number_for(integer)
     count           = factors_for(triangle_number).size
-    range_max      += 1
-    puts "I found #{count} factors for #{triangle_number}."
+    integer        += 1
   end
   puts triangle_number
   end_time = Time.now
@@ -37,14 +35,22 @@ def build_triangle_numbers_until_divisor_count_reaches(number)
 end
 
 
-def factors_for(number)
-  #factor_start_time = Time.now
-  range = (1..number/2)
-  factors = range.select {|num| number % num == 0 }
-  #factor_end_time = Time.now
-  #puts "Generated factors for #{number} in #{factor_end_time - factor_start_time} seconds"
-  puts factors << number
-  factors << number
+def triangle_number_for(number)
+  number * (number + 1) / 2
 end
 
-build_triangle_numbers_until_divisor_count_reaches(10)
+
+def factors_for(number)
+  factors = []
+  n = 1
+  while n <= (number ** 0.5)
+    if number % n == 0
+      factors << n
+      factors << (number / n) unless (number / n) == n
+    end
+    n += 1
+  end
+  factors
+end
+
+build_triangle_numbers_until_divisor_count_reaches(500)
