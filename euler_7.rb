@@ -3,8 +3,8 @@
 
 def find_ordinal_prime(ordinal)
   primes = [2]
-
-  i = 2
+  i      = 2
+  
   while primes.length != ordinal
     if is_prime?(i)
       primes << i
@@ -18,8 +18,9 @@ def find_ordinal_prime(ordinal)
 end
 
 def is_prime?(num)
-  n = 2
+  n     = 2
   value = false
+  
   while n < num
     if num % n == 0
       value = false

@@ -4,8 +4,9 @@
 
 
 def is_prime?(num)
-  n = 2
+  n     = 2
   value = false
+  
   while n < num
     if num % n == 0
       value = false
@@ -15,13 +16,14 @@ def is_prime?(num)
       n += 1
     end
   end
+  
   value
 end
 
 
 def largest_prime_factor(number)
 
-  i = Math.sqrt(number).truncate
+  i     = Math.sqrt(number).truncate
   found = false
 
   while found == false && i > 0
@@ -30,11 +32,8 @@ def largest_prime_factor(number)
       return i
     else
       i -= 1
-      
     end
-
   end
-
 end
 
 

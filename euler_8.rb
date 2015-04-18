@@ -3,19 +3,18 @@
 
 def greatest_product(numbers, quantity)
   greatest_product = 0
-  temp_product = 0
-  numbers.each_with_index do |n, i|
-    
-    if numbers[i+quantity-1] && (numbers[i..(i+quantity-1)]).include?(0.to_s)
+  temp_product     = 0
+  
+  numbers.each_with_index do |n, i|  
+    if numbers[i + (quantity - 1)] && (numbers[i..(i + (quantity - 1))]).include?(0.to_s)
       #puts "There's a 0 near index #{i}, so I'm skipping..."
     else
-      temp_product = numbers[i..(i+quantity-1)].inject(1) { |product, n| product.to_i * n.to_i }
+      temp_product     = numbers[i..(i + (quantity - 1))].inject(1) { |product, n| product.to_i * n.to_i }
       greatest_product = temp_product if temp_product > greatest_product
     end
   end
 
   puts greatest_product
-
 end
 
 NUMBERS =

@@ -4,13 +4,13 @@
 
 def largest_palindrome_from_product
 
-  max = 999
-  min = 100
+  max     = 999
+  min     = 100
   product = 0
 
   max.downto(min).each do |a|
     max.downto(min).each do |b|
-      product = a*b if is_palindrome?(a*b) && a*b > product
+      product = a * b if is_palindrome?(a * b) && a * b > product
     end
   end
 

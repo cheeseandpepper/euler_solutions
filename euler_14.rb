@@ -15,13 +15,15 @@
 require 'pry'
 
 def find_longest_chain_for(max_number)
-  start_time = Time.now
-  longest_chain = 0
+  start_time         = Time.now
+  longest_chain      = 0
   current_chain_size = 1
+  
   (1..max_number).each do |num|
     current_chain_size = collatz_sequence_for([num], num)
     longest_chain = current_chain_size if current_chain_size > longest_chain
   end
+  
   end_time = Time.now
   puts longest_chain
   puts "Completed in #{end_time - start_time} seconds."
@@ -33,8 +35,10 @@ def collatz_sequence_for(sequence=[], number)
   else
     number = (number * 3) + 1
   end
+  
   sequence << number
   collatz_sequence_for(sequence, number) if number != 1
+  
   return sequence.count
 end
 

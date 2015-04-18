@@ -42,7 +42,8 @@ end
 
 def factors_for(number)
   factors = []
-  n = 1
+  n       = 1
+  
   while n <= (number ** 0.5)
     if number % n == 0
       factors << n

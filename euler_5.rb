@@ -6,36 +6,33 @@
 ### WAY TOO SLOW!!!
 def smallest_common_multiple(numbers)
   i = numbers.max
+  
   until numbers.all? { |n| i % n == 0}
     puts i
     i += 20
   end
-
   puts i
-
 end
 
 smallest_common_multiple(1..20)
 
 def get_prime_factors(num)
-  i = 3
+  i             = 3
   prime_factors = []
-    if number % i == 0 && is_prime?(i)
-      prime_factors << i
-      return i
-    else
-      i -= 1
-      
-    end
-
   
-
+  if number % i == 0 && is_prime?(i)
+    prime_factors << i
+    return i
+  else
+    i -= 1  
+  end
 end
 
 
 def is_prime?(num)
-  n = 2
+  n     = 2
   value = false
+  
   while n < num
     if num % n == 0
       value = false

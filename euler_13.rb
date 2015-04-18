@@ -106,9 +106,9 @@ NUMS =
 NUM_ARRAY = NUMS.split("\n").map { |n| n.to_i }
 
 def first_x_digits_of_sum(x_digits, number_collection)
-  start_time = Time.now
+  start_time     = Time.now
   first_x_digits = number_collection.inject(:+).to_s[0..9].to_i
-  end_time = Time.now
+  end_time       = Time.now
   puts first_x_digits
   puts "Completed in #{end_time - start_time} seconds."
 end

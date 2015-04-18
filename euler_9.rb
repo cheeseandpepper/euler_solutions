@@ -12,10 +12,9 @@
 # max is a crude educated guess particular to this problem. if max is 333 then at best 334 and 335 would be B and C, and that's over 1000. its there to prevent a run-away formula.
 
 def pythagorean_triplet(sum)
-  y = 1
-  z = 2
-
-  max = sum/3.truncate
+  y   = 1
+  z   = 2
+  max = (sum / 3).truncate
 
   while y < max
     while z < max
@@ -30,10 +29,9 @@ def pythagorean_triplet(sum)
         z += 1
       end
     end
-    z = 1
+    z  = 1
     y += 1
-  end
-  
+  end 
 end
 
 pythagorean_triplet(1000)

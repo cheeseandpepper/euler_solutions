@@ -5,13 +5,13 @@
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
 def find_max_sum_in_fib_sequence(max)
-  sum = 2
+  sum   = 2
   term1 = 1
   term2 = 2
   term3 = term1 + term2
 
   while term2 < max
-    sum += term3 if term3 % 2 == 0
+    sum  += term3 if term3 % 2 == 0
     term1 = term2
     term2 = term3
     term3 = term1 + term2

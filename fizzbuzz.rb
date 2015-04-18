@@ -44,8 +44,9 @@ end
 def fizzbuzz3(range)
   range.each do |num|
     puts "FizzBuzz" if num.fizz? && num.buzz?
-    puts "Fizz" if num.fizz? and not num.buzz?
-    puts "Buzz" if num.buzz? and not num.fizz?
+    puts "Fizz"     if num.fizz? and not num.buzz?
+    puts "Buzz"     if num.buzz? and not num.fizz?
+    
     puts num unless num.fizz? || num.buzz?
   end
 end
@@ -65,9 +66,10 @@ end
 
 def fizzbuzz4(range)
   range.each do |num|
-    x = ""
+    x  = ""
     x += "Fizz" if num % 3 == 0
     x += "Buzz" if num % 5 == 0
+    
     puts x == "" ? num : x
   end
 end
